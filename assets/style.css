@@ -23,11 +23,16 @@
 
 html {
     font-size: 62.5%;
+    scroll-behavior: smooth
 }
 
 :root {
     --main-color: #272422;
     --space-out: 20rem;
+}
+
+body {
+    background-color: var(--main-color);
 }
 
 img {
@@ -40,11 +45,11 @@ a {
 }
 
 h1 {
-    font-size: 15rem;
+    font-size: clamp(10rem, 10vw, 15rem);
     font-weight: 400;
     font-family: newyork, Arial, Helvetica, sans-serif;
     line-height: 13rem;
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
 }
 
 h2 {
@@ -75,6 +80,14 @@ p {
     padding: 2.5rem 2rem;
     border-radius: 100%;
     font-size: 1.4rem;
+    transition: 0.5s;
+}
+
+.button:hover {
+    background-color: #E7BF95;
+    color: var(--main-color);
+    transform: translateY(-1rem);
+
 }
 
 /* HEADER */
@@ -100,6 +113,21 @@ header nav {
 header nav a {
     font-size: 1.4rem;
     margin: 0 2rem;
+    font-family: euclid-bold;
+}
+
+header nav a:nth-of-type(1) {
+    color: #E7BF95;
+}
+
+header nav .burger-menu {
+    display: none;
+}
+
+header nav .burger-menu div {
+    background-color: white;
+    height: 1px;
+    width: 15px;
 }
 
 header section {
@@ -111,12 +139,12 @@ header section {
 }
 
 header section > img {
-    height: 35rem;
-    margin-top: 15rem;
+    height: 60%;
+    align-self: center;
 }
 
 header section video {
-    height: 75%;
+    height: 70%;
     width: 100%;
     object-fit: cover;
 }
@@ -183,7 +211,7 @@ header article .effect-img img:nth-of-type(1) {
 }
 
 header article .effect-img img:nth-of-type(2) {
-    width: 60%;
+    width: 70%;
 }
 
 header article p {
@@ -204,6 +232,8 @@ main {
     padding: 0 var(--space-out);
 }
 
+/* SECTION LIFE-STYLE */
+
 .life-style {
     text-align: center;
     padding:5rem 0 10rem 0;
@@ -223,6 +253,8 @@ main {
     margin-bottom: 10rem;
 }
 
+/* SECTION WORKS */
+
 .works {
     border-top: 1px solid #9999997b;
     padding-top: 7rem;
@@ -236,7 +268,7 @@ main {
 .view {
     display: flex;
     justify-content: space-between;
-    align-items: last baseline;
+    align-items: center;
     margin-bottom: 5rem;
 }
 
@@ -267,12 +299,12 @@ main {
     object-fit: cover;
 }
 
-.works .pictures img:nth-of-type(1) {
+.works img:nth-of-type(1) {
     width: 35vw;
     height: 85vh;
 }
 
-.works .pictures img:nth-of-type(2) {
+.works .pictures div:nth-of-type(2) img {
     width: 25vw;
     height: 60vh;
 }
@@ -280,6 +312,38 @@ main {
 .works .pictures:nth-of-type(3) {
     flex-direction: row-reverse;
     margin-bottom: 10rem;
+}
+
+.works .pictures div {
+    position: relative;
+}
+
+.works .pictures div div {
+    position: absolute;
+    top: 4rem;
+    left: 3rem;
+    transition: 1s;
+    opacity: 0;
+}
+
+.works .pictures div:hover div {
+    top: 3rem;
+    opacity: 1;
+}
+
+.works .pictures div div .symbol {
+    width: 1vw;
+    height: 2vh;
+    margin-bottom: 1rem;
+}
+
+.works .pictures div div p {
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.works .pictures div div h3 {
+    font-size: 4rem;
 }
 
 .works .let-talk {
@@ -290,20 +354,57 @@ main {
     padding-bottom: 1rem;
 }
 
+.works .let-talk p:nth-of-type(1) {
+    color: white;
+}
+
+/* SECTION COSTUME */
+
 .costume {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    margin-bottom: 20rem;
+    margin-bottom: 10rem;
+    position: relative;
 }
 
-.costume img:nth-of-type(1) {
-    align-self: flex-end;
+.costume .pictures1 {
+    margin-top: 20rem;
+    width: 25%;
+    height: 60%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    transition: 1s;
 }
 
-.costume img:nth-of-type(2) {
-    align-self: flex-start;
+.costume .pictures2{
     justify-self: flex-end;
-    width: 40%;
+    width: 15%;
+    height: 40%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    transition: 1s;
+}
+
+.costume .first-picture {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 25%;
+    height: 60%;
+    transition: 1s;
+}
+
+.costume .second-picture {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 15%;
+    height: 40%;
+    transition: 1s;
 }
 
 .costume article {
@@ -314,13 +415,19 @@ main {
     transition: 0.5s linear;
 }
 
+.costume article h2:hover{
+    color: #E7BF95;
+}
+
+.costume article div:hover img {
+    opacity: 1;
+}
+
 .costume article p {
     margin-bottom: 2rem;
 }
 
-.costume article h2:hover{
-    color: #E7BF95;
-}
+/* SECTION MY-BlOGS */
 
 .my-blogs {
     border-top: 1px solid #9999997b;
@@ -342,10 +449,18 @@ main {
     gap: 5rem;
 }
 
+.my-blogs .blog div div:nth-of-type(1) {
+    height: 35rem;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
 .my-blogs .blog img {
-    height: 50vh;
+    height: 35rem;
     object-fit: cover;
     margin-bottom: 3rem;
+    overflow: hidden;
+    transition: 0.5s;
 }
 
 .my-blogs .blog p {
@@ -358,8 +473,20 @@ main {
 }
 
 .my-blogs .blog h3 {
+    font-size: 2.5rem;
     margin-top: 2rem;
+    transition: 0.5s;
 }
+
+.my-blogs .blog h3:hover {
+    color: #E7BF95;
+}
+
+.wrapper:hover img {
+    transform: scale(1.2);
+}
+
+/* SECTION DIVINE-BEAUTY */
 
 .divine-beauty {
     margin: 0 -20rem;
@@ -394,6 +521,8 @@ main {
     width: 20vw;
 }
 
+/* SECTION AWARD-WINNER */
+
 .award-winner {
     padding-top: 8rem;
 }
@@ -427,6 +556,8 @@ main {
     border-bottom: 1px solid #9999997f;
     padding-bottom: 1.5rem;
 }
+
+/* SECTION WORK-TOGETHER */
 
 .work-together {
     padding: 10rem 0;
@@ -472,10 +603,6 @@ footer .powered div a {
     margin: 0 1rem;
 }
 
-footer .powered div a:nth-of-type(1), footer .powered div a:nth-of-type(2) {
-    border-bottom: 1px solid #999999;
-}
-
 footer form input {
     display: block;
 }
@@ -493,3 +620,319 @@ footer form input[type="submit"] {
     background-color: var(--main-color);
     padding: 1rem 2rem;
 }
+
+@media  screen and (max-width: 768px) {
+
+    header section {
+        padding: 10rem 5rem ;
+    }
+
+    h1 {
+        line-height: 8rem;
+    }
+
+    h2 {
+        font-size: 4rem;
+    }
+    
+    header section img {
+        height: 80%;
+    }
+
+    header section div {
+        width: 30vw;
+    }
+
+    header section h3 {
+        width: 40vw;
+    }
+
+    header article {
+        padding: 0 5rem;
+    }
+
+    header article p {
+        width: 40%;
+    }
+
+    main {
+        padding: 0 5rem;
+    }
+
+    .life-style h2 {
+        width: 50vw;
+    }
+
+    .life-style p {
+        width: 80vw;
+        margin-bottom: 5rem;
+    }
+
+    .works h2 {
+        line-height: 4rem;
+    }
+
+    .works .pictures {
+        margin-bottom: 5rem;
+    }
+
+    .works img:nth-of-type(1) {
+        width: 45vw;
+    }
+
+    .costume .pictures1-hover {
+        transform: scale(1.2);
+        margin-top: 15rem;
+    }
+
+    .costume .pictures2-hover {
+        transform: scale(1.4);
+    }
+
+    .my-blogs .blog {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .my-blogs .blog h3 {
+        width: 100%;
+    }
+
+    .divine-beauty {
+        margin: 0 -5rem;
+    }
+
+    .divine-beauty video {
+        height: 100%;
+    }
+
+    .divine-beauty div {
+        right: 3rem;
+        gap: 1rem;
+    }
+
+    .divine-beauty div h3 {
+        font-size: 3.5rem;
+        width: 20vw;
+    }
+
+    .divine-beauty div h4 {
+        width: 40vw;
+        font-size: 1.6rem;
+    }
+
+    .award-winner article > p {
+        width: 40vw;
+        transform: translateX(10rem);
+    }
+
+    .award-winner article div {
+        width: 20vw;
+    }
+
+    .work-together {
+        display: block;
+    }
+
+    .work-together div {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        transform: translateX(0);
+    }
+
+    .work-together div a {
+        height: 15%;
+        padding: 2rem 6rem;
+    }
+
+    footer {
+        padding: 2rem 2rem;
+        grid-template-columns: 0.8fr 0.6fr 0.6fr 1.1fr 0.8fr;
+    }
+}
+
+@media screen and (max-width: 576px) {
+
+    header {
+        padding-bottom: 10rem;
+    }
+
+    header .nav-tags {
+        display: none;
+    }
+
+    header .burger-menu {
+        display: block;
+    }
+
+    header section {
+        grid-template-columns: none;
+        grid-template-areas: 
+        "header header"
+        "img video";
+        padding: 10rem 1rem;
+        margin-bottom: -5rem;
+    }
+
+    header section div {
+        grid-area: header;
+        width: 100%;
+        margin-bottom: 3rem;
+    }
+
+    header section h3 {
+        width: 80vw;
+    }
+
+    header article {
+        padding: 0 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3rem;
+    }
+
+    header article .effect-img img:nth-of-type(2) {
+        width: 100%;
+    }
+
+    header article .effect-img img:nth-of-type(1) {
+        transform: translateX(0);
+    }
+
+    main {
+        padding: 0 1rem;
+    }
+
+    .life-style h2 {
+        font-size: 2.5rem;
+    }
+
+    .works img:nth-of-type(1) {
+        width: 60vw;
+    }
+
+    .works .pictures div:nth-of-type(2) img {
+        width: 31vw;
+    }
+
+    .works .pictures div div {
+        opacity: 1;
+        top: 5rem;
+    }
+
+    .works .pictures div div .symbol {
+        width: 2vw;
+    }
+
+    .costume article h2 {
+        font-size: 2.5rem;
+    }
+
+    .costume .first-picture {
+        height: 100%;
+        width: 35vw;
+    } 
+    
+    .costume .pictures1 {
+        height: 100%;
+        width: 35vw;
+    }
+
+    .costume .second-picture {
+        height: 100%;
+        width: 30vw;
+    }
+
+    .costume .pictures2 {
+        height: 100%;
+        width: 30vw;
+    }
+
+    .my-blogs .blog {
+        gap: 2rem;
+    }
+
+    .my-blogs .view div {
+        align-items: flex-start;
+    }
+
+    .my-blogs .view div div {
+        width: 7vw;
+        margin: 0 1rem;
+    }
+
+    .my-blogs .view div p {
+        width: 40vw;
+    }
+
+    .divine-beauty {
+        margin: 0 -1rem;
+    }
+
+    .divine-beauty video {
+        height: 100%;
+    }
+
+    .divine-beauty div {
+        padding-top: 2rem;
+        bottom: 2rem
+    }
+
+    .divine-beauty div h3 {
+        font-size: 3rem;
+    }
+
+    .divine-beauty div h4 {
+        width: 50vw;
+        font-size: 1.4rem;
+    }
+
+    .award-winner h2 {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .award-winner article > p {
+        width: 45vw;
+        transform: translateX(0);
+    }
+
+    .award-winner article div {
+        width: 25vw;
+    }
+
+    .work-together div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .work-together div h2 {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .work-together div a {
+        margin: auto;
+    }
+
+    footer {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        "input input"
+        "logo category1"
+        "category2 category3";
+    }
+
+    footer form {
+        grid-area: input;
+        margin-bottom: 3rem;
+    }
+
+    footer form input[type="email"] {
+        width: 90vw;
+    }
+
+    footer .powered div {
+        margin-top: 3rem;
+    }
+ }
